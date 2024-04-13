@@ -1,0 +1,86 @@
+{% extends 'Orphanage/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REQUEST</title>
+</head>
+<body>
+  <form method="POST">
+    {% csrf_token %}
+    <table>  
+        <tr>
+            <td>Request Title</td>
+            <td><input type="text" name="txttitle" placeholder="Enter Request Title" value="{{editData.request_title}}"></td>
+        </tr>
+        <tr>
+            <td>Request Description</td>
+            <td><input type="text" name="txtdescription" placeholder="Enter Request description" value="{{editData.request_description}}"></td>
+        </tr>
+        {% comment %} <tr>
+            <td>Request Count</td>
+            <td><input type="text" name="txtcount" placeholder="Enter Request count" value="{{editData.request_count}}"></td>
+        </tr> {% endcomment %}
+        <tr>
+            <td>Request Amount</td>
+            <td><input type="text" name="txtamount" placeholder="Enter Request amount" value="{{editData.payment_amount}}"></td>
+        </tr>
+        <tr>
+            <td>Request Type</td>
+            <td>
+                <select name="sel_type" id="">
+                    <option value="">...Select...</option>
+                    {% for i in type %}
+                    <option value="{{i.id}}">{{i.donationtype_name}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+           <td  colspan="2">
+            <input type="submit" name="btnsubmit" value="Save">
+           </td>
+        </tr>
+       
+    </table>
+  </form>
+  {% if msg %}
+  <script>
+      alert("{{msg}}")
+      window.location = "{% url 'Orph:RequestInsert' %}"
+  </script>
+  {% endif %}
+  <table border="3" cellpadding="3" align="center">
+    <tr>
+        <th>SI.NO</th>
+        <th>Request title</th>
+        <th>Request Description</th>
+        {% comment %} <th>Request Count</th> {% endcomment %}
+        <th>Request Amount</th>
+        <th colspan="2">Action </th>
+        
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.request_title}}</td>
+        <td>{{i.request_description}}</td>
+        {% comment %} <td>{{i.request_count}}</td> {% endcomment %}
+        <td>{{i.payment_amount}}</td>
+        <td>
+            <a href="{% url 'Orph:editrequest' i.id %}">Edit</a>
+        </td>
+        <td>
+            <a href="{% url 'Orph:deleterequest' i.id %}">Delete</a>
+        </td>
+        
+    </tr>
+    {% endfor %}    
+ </table>  
+
+</body>
+</html>
+{% endblock content %}

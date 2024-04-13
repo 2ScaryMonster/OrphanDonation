@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>Student</title>
+</head>
+<body>
+    <form name="frmCal" method="POST">
+       {% csrf_token %}   
+<table>
+    <tr>
+        <td>Enter name</td>
+        <td><input type="text" name="txt_name" placeholder="Enter name" required></td>
+    </tr>
+    <tr>
+        <td>Enter Course</td>
+        <td>
+            <select name="course" id="course">
+            <option value="bca">BCA</option>
+            <option value="bba">BBA</option>
+            <option value="bcom">BSW</option>
+            <option value="bsw">BSW</option>
+          </select>
+         
+        </td>
+    </tr>
+    <tr>
+      <td>Enter marks</td>
+      <td><input type="number" name=m1 placeholder="Enter mark"></td>
+      <td><input type="number" name=m2 placeholder="Enter mark"></td>
+      <td><input type="number" name=m3 placeholder="Enter mark"><br></td><br>
+      <td><input type="number" name=m4 placeholder="Enter mark"></td>
+      <td><input type="number" name=m5 placeholder="Enter mark"><br></td>
+      <td><input type="number" name=m6 placeholder="Enter mark"></td>     
+    </tr>
+    <tr>
+        
+        <td colspan="2">
+            <input type="submit" value="submit">
+        </td>
+    </tr>
+    <tr>
+        <td>Result</td>
+        <td>{{res}}</td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>{{name}}</td>    
+    </tr>
+    <tr>
+        <td>Course</td>
+        <td>{{course}}</td>    
+    </tr>
+    <tr>
+        <td>Percentage</td>
+        <td>{{avg1}}</td>    
+    </tr>  
+</table>
+
+    </form>
+</body>
+
+
+</html>

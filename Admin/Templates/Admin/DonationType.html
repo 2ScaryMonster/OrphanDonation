@@ -1,0 +1,26 @@
+<html>
+    <head><title>Donation Type</title></head>
+    <body>
+        <h1>Donation Type</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Donation Type</td>
+                    <td><input type="text" name="txtdonation" placeholder="Enter District"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="btnsubmit" value="Save">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        {% if msg %}
+        <script>
+            alert("{{msg}}")
+            window.location = "{% url 'webadmin:DonationInsert' %}"
+        </script>
+        {% endif %}
+    </body>
+</html>

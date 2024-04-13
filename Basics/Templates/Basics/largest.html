@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <form name="frmlrg" method="POST">
+     {% csrf_token %}   
+<table>
+    <tr>
+        <td>Enter first number</td>
+        <td><input type="number" name="txtno1" placeholder="Enter Number" required></td>
+    </tr>
+    <tr>
+        <td>Enter second number </td>
+        <td><input type="number" name="txtno2" placeholder="Enter Number" required></td>
+    </tr>
+    <tr>
+        <td>Enter third  number </td>
+        <td><input type="number" name="txtno3" placeholder="Enter Number" required></td>
+    </tr>
+    
+    <tr>
+        
+        <td colspan="2">
+            <input type="submit" name="btnsubmit" value="check">        
+        </td>
+    </tr>
+    <tr>
+        <td>Result</td>
+        <td>This is the  larget number {{res1}}</td>
+    </tr>
+</table>
+    </form>
+</body>
+
+
+</html>

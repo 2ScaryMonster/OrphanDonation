@@ -1,0 +1,42 @@
+{% extends 'Orphanage/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View User</title>
+</head>
+<body>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding-top: 10px;
+          padding-bottom: 20px;
+          padding-left: 30px;
+          padding-right: 40px;
+        }
+        </style>
+    <table border="1" align="center" cellpadding="2">
+        <tr align="center">
+            <td>Photo</td>
+            <td>Name</td>
+            <td>Contact</td>
+            <td>Action</td>
+        </tr>
+        {% for i in orph %}
+        <tr>
+            <td><img src="{{i.user_photo.url}}" alt="" width="150" height="150"></td>
+            <td>{{i.user_name}}</td>
+            <td>{{i.user_contact}}</td>
+            <td><a href="{% url 'Orph:chatpage' i.id %}">Chat</a></td>
+        </tr>
+        {% endfor %}
+    </table>    
+</body>
+</html>
+{% endblock content %}

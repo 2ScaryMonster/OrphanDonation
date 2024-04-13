@@ -1,0 +1,42 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table align="center">
+        <tr>
+            <td colspan="2" align="center"><img src="{{orph.orphanage_photo.url}}" alt="" width="150" height="150"></td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>{{orph.orphanage_name}}</td>
+        </tr>
+        <tr>
+            <td>Contact:</td>
+            <td>{{orph.orphanage_contact}}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{{orph.orphanage_email}}</td>
+        </tr>
+        <tr>
+            <td>District:</td>
+            <td>{{orph.place.district.district_name}}</td>
+        </tr>
+        <tr>
+            <td>Place:</td>
+            <td>{{orph.place.place_name}}</td>
+        </tr>
+        <tr align="center">
+            <td><a href="{% url 'User:donation' orph.id %}">Donation</a></td>          
+        </tr>
+    </table>
+</body>
+</html>
+{% endblock content %}

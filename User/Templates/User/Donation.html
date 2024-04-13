@@ -1,0 +1,46 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <head>
+        <title>Donation</title>
+    </head>
+      <body>
+        <form method="POST">
+            {% csrf_token %}
+              <table>
+                <tr>
+                    <td>Donation Title</td>
+                    <td><input type="text" name="txttitle" placeholder="Enter Request title"></td>
+                </tr>
+                <tr>
+                    <td>Donation Description</td>
+                    <td><input type="text" name="txtdescription" placeholder="Enter Request description"></td>
+                </tr>
+                <tr>
+                    <td>Donation Type</td>
+                    <td>
+                        <select name="sel_donation" id="">
+                            <option value="">...Select...</option>
+                            {% for i in donation %}
+                            <option value="{{i.id}}">{{i.donationtype_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Donation Amount</td>
+                    <td><input type="text" name="txtamount" placeholder="Enter Donation amount"></td>
+                </tr>
+                
+                <tr>
+                    <td  colspan="2">
+                     <input type="submit" name="btnsubmit" value="Donate">
+                    </td> 
+                </tr>
+                </table>
+        </form>
+      </body>
+</html>
+{% endblock content %}

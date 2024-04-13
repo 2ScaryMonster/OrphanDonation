@@ -1,0 +1,104 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sub {
+            padding: 18px;
+            background-color: #E3F2FD;
+            width: fit-content;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+              <table>
+                <tr>
+                    <td>District</td>
+                    <td>
+                        <select name="sel_district" id="sel_district">
+                            <option value="">...Select...</option>
+                            {% for i in districtdata %}
+                            <option value="{{i.id}}">{{i.district_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>Place</td>
+                        <td>
+                            <select name="sel_place" id="sel_place">
+                            <option value="">...Select...</option>
+                            </select>
+                        </td>
+                    </td>
+                </tr>
+              </table>
+        </form>
+        <div class="main" id="result">
+            {% for i in orphnage %}
+            <div class="sub">
+                <div><img src="{{i.orphanage_photo.url}}" width="150" height="150" alt=""></div>
+                <div>Name :{{i.orphanage_name}}</div>
+                <div>Contact :{{i.orphanage_contact}}</div>
+                <div><a href="{% url 'User:orphanage_pro' i.id %}">View</a></div>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_district").change(function () {
+        var did = $(this).val(); 
+        var pid = document.getElementById("sel_place").value
+        var ur = "{% url 'Guest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did },
+            success: function (data) {
+                $("#sel_place").html(data);
+                var ur = "{% url 'User:ajaxorphanage' %}"
+                $.ajax({
+                    url: ur,
+                    data: { pid: pid,did: did, },
+                    success: function (data) {
+                        $("#result").html(data);
+                    },
+                });
+            },
+        });
+    });
+
+    $("#sel_place").change(function () {
+        var pid = $(this).val();
+        var did = document.getElementById("sel_district").value
+        var ur = "{% url 'User:ajaxorphanage' %}"
+        $.ajax({
+            url: ur,
+            data: { pid: pid,did: did, },
+            success: function (data) {
+                $("#result").html(data);
+            },
+        });
+    });
+</script>
+{% endblock content %}

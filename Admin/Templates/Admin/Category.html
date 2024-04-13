@@ -1,0 +1,39 @@
+<html>
+<head><title>Category</title></head>
+<body>
+ <form name="frmcat" method="POST">
+    {% csrf_token %}    
+  <table align="center">
+    <tr>
+        <td>Enter Category<td>
+        <td><input type="text" name="txtcategory" placeholder="Enter category" required value="{{editData.category_name}}"></td>           
+    </tr>
+
+    <tr>
+    <td colspan="2">
+        <input type="submit" name="btnsubmit" value="save">
+    </td>    
+    </tr>
+       
+  </table>
+ </form name="frminput"> 
+     <table align="center" cellpadding="8" border="3">
+        
+        <tr>
+         <th>SI NO</th>
+         <th>Category</th>
+         <th colspan="2">Action</th>
+        </tr>   
+
+        {% for i in data %}
+       
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.category_name}}</td>
+            <td><a href="{% url 'webadmin:editcategory1' i.id %}">Edit</a></td>
+            <td><a href="{% url 'webadmin:delcat' i.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

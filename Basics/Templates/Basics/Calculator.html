@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <form name="frmCal" method="POST">
+        {% csrf_token %} 
+ <table>
+    <tr>
+        <td>Number-1</td>
+        <td><input type="varchar" name="txtno1" placeholder="Enter Number" required></td>
+    </tr>
+    <tr>
+        <td>Number-2</td>
+        <td><input type="varchar" name="txtno2" placeholder="Enter Number" required></td>
+    </tr>
+    <tr>
+        
+        <td colspan="2">
+            <input type="submit" name="btnsubmit" value="+">
+            <input type="submit" name="btnsubmit" value="-">
+        
+        </td>
+    </tr>
+    <br>
+    <tr>
+        <td>Result</td>
+        <td>{{res}}</td>
+    </tr>
+  </table>
+   </form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+    <head><title>Place</title>
+    </head>
+      <body>
+        <form name="frm_place" method="POST">
+            {% csrf_token %}
+         <table align="center">
+            <tr>
+                <td>District</td>
+                <td>
+                    <select name="sel_district" id="">
+                        <option value="">...Select...</option>
+                        {% for i in district %}
+                        <option value="{{i.id}}">{{i.district_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>Enter Place</td>
+                <td><input type="text" name="txtplace" placeholder="Place"  value="{{editData.place_name}}"></td>
+            </tr>
+            
+            <tr>
+                <td>Enter Pincode</td> 
+                <td><input type="number" name="txtpin" placeholder="Pincode"  value="{{editData.pincode}}"></td>
+            </tr>    
+            
+            <tr>
+                <td colspan="2"><input type="submit" name="btn_submit" value="submit"> </td>
+            </tr>
+         </table>
+         
+        </form>    
+        <table border="3" cellpadding="3" align="center">
+            <tr>
+                <th>SI.NO</th>
+                <th>District</th>
+                <th>Place</th>
+                <th>Pincode</th>
+                <th colspan="2">Action</th>
+            </tr>   
+            {% for i in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.district.district_name}}</td>
+                <td>{{i.place_name}}</td>
+                <td>{{i.pincode}}</td>
+                <td>
+                    <a href="{% url 'webadmin:delplc' i.id %}">Delete</a>
+                </td>
+                <td>
+                    <a href="{% url 'webadmin:editplc' i.id %}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+            
+      </body>
+</html>

@@ -1,0 +1,10 @@
+<div class="main" id="request">
+    {% for i in orp %}
+    <div class="sub">
+        <div><img src="{{i.orphanage_photo.url}}" width="150" height="150" alt=""></div>
+        <div>Name :{{i.orphanage_name}}</div>
+        <div>Contact :{{i.orphanage_contact}}</div>
+        <div><a href="{% url 'User:orphanage_pro' i.id %}">View</a></div>
+    </div>
+    {% endfor %}
+</div>
